@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deportivo Murciano FC - Página Oficial</title>
+    <style>
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #cc0000;
+            --secondary-color: #660000;
+            --accent-color: #FFFFFF;
+            --text-color: #333333;
+            --light-gray: #F5F5F5;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--accent-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo img {
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 70vh;
+            min-height: 400px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.8);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 2rem;
+            color: var(--accent-color);
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            max-width: fit-content;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        /* About Team */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Players Section */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .player-card {
+            background-color: var(--accent-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .player-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .player-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .player-info {
+            padding: 1.5rem;
+        }
+        
+        .player-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .player-position {
+            display: inline-block;
+            background-color: var(--light-gray);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .player-number {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* Fixtures Section */
+        .fixtures-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        
+        .fixtures-table th, 
+        .fixtures-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .fixtures-table th {
+            background-color: var(--primary-color);
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .fixtures-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .fixtures-table tr:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .home-team, 
+        .away-team {
+            font-weight: bold;
+        }
+        
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-card {
+            background-color: var(--accent-color);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: var(--accent-color);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 0.75rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-text {
+                order: 2;
+            }
+            
+            .about-image {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="Imagen de WhatsApp 2025-07-10 a las 01.01.32_a595becd.jpg">
+                <span class="logo-text">DEPORTIVO MURCIANO FC</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#equipo">El Equipo</a></li>
+                    <li><a href="#jugadores">Jugadores</a></li>
+                    <li><a href="#partidos">Títulos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <img class="hero-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5d5d1e73-5a77-4a89-a0c1-a7ef7303f34a.png" alt="Estadio de fútbol lleno de aficionados con jugadores del Deportivo Murciano FC celebrando un gol, fuegos artificiales en el cielo">
+        <div class="hero-content">
+            <h1 class="hero-title">DEPORTIVO MURCIANO FC</h1>
+            <p class="hero-subtitle">Más que un club, una pasión que une a toda la Región de Murcia</p>
+            <a href="#jugadores" class="cta-button">Conoce a nuestros jugadores</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- About Team -->
+        <section class="section" id="equipo">
+            <h2 class="section-title">NUESTRO CLUB</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Fundado en 2025, el Deportivo Murciano FC es el club de referencia de la Región de Murcia. Hemos crecido para convertirnos en una institución deportiva que representa los valores de esfuerzo, pasión y comunidad.</p>
+                    <p>Nuestro equipo compite en la Pandota League con el objetivo de revalidar el título. Contamos con una cantera de jóvenes talentos y un equipo técnico de primer nivel.</p>
+                    <p>"El Murciano" no es solo un club de fútbol, es un símbolo de identidad regional que une a aficionados de todas las edades y procedencias.</p>
+                </div>
+                <div class="about-image">
+                    <img src="Imagen de WhatsApp 2025-07-10 a las 01.01.32_a595becd.jpg">
+                </div>
+            </div>
+        </section>
+
+        <!-- Players Section -->
+        <section class="section" id="jugadores">
+            <h2 class="section-title">PLANTILLA 2025</h2>
+            <div class="players-grid">
+                <!-- Player 1 -->
+                <div class="player-card">
+                    <img class="player-image" src="Imagen de WhatsApp 2025-07-26 a las 19.21.06_5ecb50ec.jpg">
+                    <div class="player-info">
+                        <h3 class="player-name">Álvaro Sánchez</h3>
+                        <span class="player-position">Portero/Capitán</span>
+                        <p><span class="player-number">1</span> · 16 años · Español</p>
+                    </div>
+                </div>
+                
+                <!-- Player 2 -->
+                <div class="player-card">
+                    <img class="player-image" src="Imagen de WhatsApp 2025-07-26 a las 19.21.06_eff45592.jpg">
+                    <div class="player-info">
+                        <h3 class="player-name">Antonio Sánchez</h3>
+                        <span class="player-position">Defensa</span>
+                        <p><span class="player-number">8</span> · 16 años · Español</p>
+                    </div>
+                </div>
+                
+                <!-- Player 3 -->
+                <div class="player-card">
+                    <img class="player-image" src="Imagen de WhatsApp 2025-07-10 a las 12.19.21_e11fa3dc.jpg">
+                    <div class="player-info">
+                        <h3 class="player-name">Hugo Bullido</h3>
+                        <span class="player-position">Defensa</span>
+                        <p><span class="player-number">18</span> · 15 años · Español</p>
+                    </div>
+                </div>
+                
+                <!-- Player 4 -->
+                <div class="player-card">
+                    <img class="player-image" src="Imagen de WhatsApp 2025-07-10 a las 12.19.22_289d0874.jpg">
+                    <div class="player-info">
+                        <h3 class="player-name">David Guirado</h3>
+                        <span class="player-position">Mediocentro</span>
+                        <p><span class="player-number">4</span> · 16 años · Español</p>
+                    </div>
+                </div>
+                
+                <!-- Player 5 -->
+                <div class="player-card">
+                    <img class="player-image" src="Imagen de WhatsApp 2025-07-26 a las 19.29.12_3df4502b.jpg">
+                    <div class="player-info">
+                        <h3 class="player-name">Hugo Almendro</h3>
+                        <span class="player-position">Delantero/Portero</span>
+                        <p><span class="player-number">88</span> · 16 años · Español</p>
+                    </div>
+                </div>
+                
+                <!-- Player 6 -->
+                <div class="player-card">
+                    <img class="player-image" src="Imagen de WhatsApp 2025-07-26 a las 19.21.06_71030feb.jpg">
+                    <div class="player-info">
+                        <h3 class="player-name">Hugo Sánchez</h3>
+                        <span class="player-position">Delantero/Portero</span>
+                        <p><span class="player-number">28</span> · 16 años · Español</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fixtures Section -->
+        <section class="section" id="partidos">
+            <h2 class="section-title">TÍTULOS GANADOS</h2>
+            <table class="fixtures-table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Competición</th>
+                        <th>Ganador</th>
+                        <th>Estadio</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>26/06/2025</td>
+                        <td>Pandota League</td>
+                        <td class="home-team">Deportivo Murciano FC</td>
+                        <td>Estadio Gitanotes de Murcia</td>
+                        
+                    </tr>
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contacto">
+            <h2 class="section-title">CONTACTO</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3 class="contact-title">Información del Club</h3>
+                    <p><strong>Dirección:</strong> Av. del Fútbol, 1, 30007 Murcia</p>
+                    <p><strong>Teléfono:</strong> +34 968 123 456</p>
+                    <p><strong>Email:</strong> info@deportivomurcianofc.es</p>
+                </div>
+                <div class="contact-card">
+                    <h3 class="contact-title">Taquillas</h3>
+                    <p><strong>Horario:</strong> L-V 10:00-14:00 / 17:00-20:00</p>
+                    <p><strong>Teléfono:</strong> +34 968 234 567</p>
+                    <p><strong>Email:</strong> entradas@capcutdeportivomurcianofc.es</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">
+                <img src="Imagen de WhatsApp 2025-07-10 a las 01.01.32_a595becd.jpg">
+                <span class="logo-text">DEPORTIVO MURCIANO FC</span>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="Facebook del Deportivo Murciano FC">D</a>
+                <a href="#" class="social-link" aria-label="Twitter del Deportivo Murciano FC">M</a>
+                <a href="#" class="social-link" aria-label="Instagram del Deportivo Murciano FC">F</a>
+                <a href="#" class="social-link" aria-label="YouTube del Deportivo Murciano FC">C</a>
+            </div>
+            <p class="copyright">© 2025 Deportivo Murciano FC. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Simple animation for player cards
+        const playerCards = document.querySelectorAll('.player-card');
+        
+        playerCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
+            });
+        });
+        
+        // Date formatting for fixtures
+        const fixtureDates = document.querySelectorAll('.fixtures-table tbody td:first-child');
+        // Could add more complex date formatting here if needed
+    </script>
+</body>
+</html>
+
